@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harbor-patch-memory"
+version = "0.1.0"
+description = "Harbor agents that wrap OpenHands with EvoClaw-style Patch Memory."
+requires-python = ">=3.11"
+authors = [{name = "qingchuan"}]
+dependencies = [
+  # Patch Memory uses OpenAI-compatible client for the summariser. Keep this
+  # minimal — Harbor itself pulls everything else (litellm, openai, etc).
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["harbor_patch_memory*"]
