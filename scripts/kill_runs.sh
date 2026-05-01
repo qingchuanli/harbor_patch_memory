@@ -22,9 +22,9 @@ set -euo pipefail
 
 usage() {
     cat <<EOF
-Usage: $0 (--variant {pm|baseline|terminus2-pm|terminus2-baseline} | --all) [options]
+Usage: $0 (--variant {pm|baseline|terminus2_pm|terminus2-pm} | --all) [options]
 
-  --variant {pm|baseline|terminus2-pm|terminus2-baseline}
+  --variant {pm|baseline|terminus2_pm|terminus2-pm}
                             tear down one variant's runner
   --all                     tear down all supported variants
   --grace SECONDS           seconds to wait between SIGTERM and SIGKILL (default: 30)
@@ -51,7 +51,7 @@ DRY_RUN=0
 while [ $# -gt 0 ]; do
     case "$1" in
         --variant)       VARIANTS+=("$2"); shift 2 ;;
-        --all)           VARIANTS=(pm baseline terminus2-pm terminus2-baseline); shift ;;
+        --all)           VARIANTS=(pm baseline terminus2_pm terminus2-pm); shift ;;
         --grace)         GRACE="$2"; shift 2 ;;
         --trials-dir)    TRIALS_DIR="$2"; shift 2 ;;
         --tmux-session)  TMUX_SESSION="$2"; shift 2 ;;
@@ -233,8 +233,8 @@ kill_variant() {
 for variant in "${VARIANTS[@]}"; do
     if [ "$variant" != "pm" ] \
        && [ "$variant" != "baseline" ] \
-       && [ "$variant" != "terminus2-pm" ] \
-       && [ "$variant" != "terminus2-baseline" ]; then
+       && [ "$variant" != "terminus2_pm" ] \
+       && [ "$variant" != "terminus2-pm" ]; then
         echo "skipping unknown variant: $variant" >&2
         continue
     fi

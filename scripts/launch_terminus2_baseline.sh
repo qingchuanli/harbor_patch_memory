@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# scripts/launch_terminus2_pm.sh — start the Terminus2 + Patch Memory
+# scripts/launch_terminus2_baseline.sh — start the Terminus2 baseline
 # runner over the full Terminal-shift dataset, detached in its own tmux
 # session.
 
@@ -36,11 +36,11 @@ if [ -n "${LLM_MODEL:-}" ]; then
 fi
 
 EXEC_ARGS=(
-    --variant terminus2_pm
+    --variant terminus2_baseline
     --parallel 6
-    --start-chain-index 11
     --max-chains 10
-    --tmux-session harbor-terminus2-pm
+    --start-chain-index 11
+    --tmux-session harbor-terminus2-baseline
     --extra-run-chain-args "$EXTRA_CHAIN_ARGS"
 )
 [ -n "$NO_SINGLETONS_ARG" ] && EXEC_ARGS+=("$NO_SINGLETONS_ARG")
